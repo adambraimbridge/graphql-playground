@@ -1,19 +1,26 @@
-# Production context:
-# All deploys from the main repository branch
-# will inherit these settings.
-[context.production]
+# Settings in the [build] context are global and are applied to all contexts
+# unless otherwise overridden by more specific contexts.
+[build]
+  # Directory that contains the deploy-ready HTML files and assets.
+  publish = "public/"
+
+  # Directory with the serverless Lambda functions to deploy to AWS.
+  functions = "functions/"
+
+  # Default build command.
   command = "npm install"
+
+# Production context:
+# All deploys from the main repository branch will inherit these settings.
+[context.production]
   [context.production.environment]
     ACCESS_TOKEN = "super secret"
 
 # Deploy Preview context:
-# All deploys generated from a pull/merge request
-# will inherit these settings.
+# All deploys generated from a pull/merge request will inherit these settings.
 [context.deploy-preview.environment]
   ACCESS_TOKEN = "not so secret"
 
 # Branch deploy context:
-# All deploys that are not from a pull/merge request
-# or from the production branch will inherit these settings.
+# All deploys that are not from a pull/merge request or from the production branch will inherit these settings.
 [context.branch-deploy]
-  command = "npm install"
