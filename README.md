@@ -1,1 +1,1 @@
-# graphql-playground
+# neo4jplayground
